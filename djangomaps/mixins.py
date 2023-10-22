@@ -11,20 +11,35 @@ from urllib.parse import urlencode
 from humanfriendly import format_timespan
 
 
-# class AjaxFormMixin(object):
-#     def form_invalid(self, form):
-#         response = super(AjaxFormMixin, self).form_invalid(form)
+# Form errors checking
+def FormErrorsMixin(*args):
+    message = ""
 
-#         if self.request.is_ajax():
-#             return JsonResponse(form.errors, status=400)
-#         else:
-#             return response
+    for f in args:
+        if f.errors:
+            message = f.errors.as_text()
 
-#     def form_valid(self, form):
-#         response = super(AjaxFormMixin, self).form_valid(form)
+    return message
 
-#         if self.request.is_ajax():
-#             data = {"message": "Successfully submitted form data."}
-#             return JsonResponse(data)
-#         else:
-#             return response
+
+# Class for the Ajax form reponse
+class AjaxFormMixin(object):
+    # Method for the form invalidation
+    def form_invalid(self, form):
+        response = super(AjaxFormMixin, self).form_invalid(form)
+
+        if self.request.is_ajax():
+            message = FormErrorsMixin(form)
+            return JsonResponse({"result": "Error", "message": message})
+
+        return response
+
+    # Method for the form validation
+    def form_valid(self, form):
+        response = super(AjaxFormMixin, self).form_valid(form)
+
+        if self.request.is_ajax():
+            form.save()
+            return JsonResponse({"result": "Success", "message": ""})
+
+        return response
