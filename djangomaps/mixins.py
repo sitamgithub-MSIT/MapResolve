@@ -34,6 +34,24 @@ def recaptchavalidate(token):
     return result
 
 
+# Method for the url appending with the params
+def urlappend(**kwargs):
+    # Getting the url and the params
+    url = kwargs.get("url")
+    params = kwargs.get("params")
+
+    # The response
+    response = redirect(url)
+
+    # Appending the params to the url
+    if params:
+        query_string = urlencode(params)
+        response["Location"] += "?" + query_string
+
+    # Returning the response
+    return response
+
+
 # Class for the Ajax form reponse
 class AjaxFormMixin(object):
     # Method for the form invalidation
