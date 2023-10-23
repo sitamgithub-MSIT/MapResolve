@@ -33,6 +33,51 @@ class AccountView(TemplateView):
         return super().get(*args, **kwargs)
 
 
+# Method for the Profile view
+def ProfileView(request):
+    # Getting the user
+    user = request.user
+
+    # Getting the user profile
+    profile = user.userprofile
+
+    # Getting the user profile form
+    form = UserProfileForm(instance=profile)
+
+    if request.is_ajax():
+        form = UserProfileForm(request.POST, instance=profile)
+
+        if form.is_valid():
+            # Saving the form
+            user = form.save()
+            user.has_profile = True
+            user.save()
+
+            # Success message
+            result = "Success"
+            message = "Profile updated successfully!"
+
+        else:
+            # Error message
+            message = FormErrorsMixin(form)
+
+        # Json data to be returned to the ajax call
+        data = {"result": result, "message": message}
+        return JsonResponse(data)
+
+    else:
+        # Context data for the Profile view
+        context = {
+            "form": form,
+        }
+
+        context["google_api_key"] = settings.GOOGLE_API_KEY
+        context["base_country"] = settings.BASE_COUNTRY
+
+    # Returning the response
+    return render(request, "users/profile.html", context)
+
+
 # Class for the User Login view
 class LoginView(FormView):
     # Template for the User Login view
