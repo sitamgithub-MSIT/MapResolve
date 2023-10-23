@@ -1,5 +1,5 @@
 # Django imports
-from django.shortcuts import redirect, render 
+from django.shortcuts import redirect, render
 from django.views.generic.edit import FormView
 from django.views.generic.base import TemplateView
 from django.http import JsonResponse
@@ -10,41 +10,59 @@ from django.contrib.auth.decorators import login_required
 
 # Local imports
 from .forms import MyUserCreationForm, AuthForm, UserProfileForm
-from djangomaps.mixins import FormErrorsMixin, AjaxFormMixin, urlappend, recaptchavalidate
+from djangomaps.mixins import (
+    FormErrorsMixin,
+    AjaxFormMixin,
+    urlappend,
+    recaptchavalidate,
+)
 
 # Create your views here.
 
 
 # Class for the User Login view
-# class LoginView(FormView):
-#     # Template for the User Login view
-#     template_name = "users/login.html"
+class LoginView(FormView):
+    # Template for the User Login view
+    template_name = "#"
 
-#     # Form class for the User Login view
-#     form_class = AuthForm
+    # Form class for the User Login view
+    form_class = AuthForm
+    success_url = "/"
 
-#     # Method for the User Login view
-#     def form_valid(self, form):
-#         # Getting the form data
-#         username = form.cleaned_data.get("username")
-#         password = form.cleaned_data.get("password")
+    # Method for the User Login view
+    def form_valid(self, form):
+        response = super(AjaxFormMixin, self).form_valid(form)
 
-#         # Authenticating the user
-#         user = authenticate(self.request, username=username, password=password)
+        if self.request.is_ajax():
+            # Getting the form data
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
 
-#         # Logging in the user
-#         login(self.request, user)
+            # Authenticating the user
+            user = authenticate(self.request, username=username, password=password)
 
-#         # Returning the response
-#         return redirect("users:profile", username=username)
+            if user is not None:
+                # Logging in the user
+                login(
+                    self.request,
+                    user,
+                    backend="django.contrib.auth.backends.ModelBackend",
+                )
 
-#     # Method for the User Login view
-#     def form_invalid(self, form):
-#         # Getting the form errors
-#         message = FormErrorsMixin(form)
+                result = "success"
+                message = "Login successful!"
 
-#         # Returning the response
-#         return JsonResponse({"message": message})
+            else:
+                # Error message
+                message = FormErrorsMixin(form)
+
+            # Json data to be returned to the ajax call
+            data = {"result": result, "message": message}
+            return JsonResponse(data)
+
+        # Returning the response
+        return response
+
 
 # # Class for the User Registration view
 
@@ -76,11 +94,3 @@ from djangomaps.mixins import FormErrorsMixin, AjaxFormMixin, urlappend, recaptc
 
 #         # Returning the response
 #         return redirect("users:profile", username=username)
-
-#     # Method for the User Registration view
-#     def form_invalid(self, form):
-#         # Getting the form errors
-#         message = FormErrorsMixin(form)
-
-#         # Returning the response
-#         return JsonResponse({"message": message})
