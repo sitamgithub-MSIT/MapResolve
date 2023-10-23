@@ -22,6 +22,18 @@ def FormErrorsMixin(*args):
     return message
 
 
+# Method for the recaptcha validation
+def recaptchavalidate(token):
+    # Data to be sent to the Google API
+    data = {"secret": settings.RECAPTCHA_SECRET_KEY, "response": token}
+
+    # Sending the request to the Google API
+    r = requests.post("https://www.google.com/recaptcha/api/siteverify", data=data)
+    result = r.json()
+
+    return result
+
+
 # Class for the Ajax form reponse
 class AjaxFormMixin(object):
     # Method for the form invalidation
