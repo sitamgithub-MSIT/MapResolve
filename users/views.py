@@ -21,6 +21,9 @@ from djangomaps.mixins import (
 
 # Create your views here.
 
+result = "Error"
+message = "Something went wrong!"
+
 
 # Class for the Account view
 class AccountView(TemplateView):
