@@ -8,6 +8,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # Local imports
 from .forms import MyUserCreationForm, AuthForm, UserProfileForm
@@ -19,6 +20,17 @@ from djangomaps.mixins import (
 )
 
 # Create your views here.
+
+
+# Class for the Account view
+class AccountView(TemplateView):
+    # Template for the Account view
+    template_name = "users/account.html"
+
+    # Method for the Account view
+    @method_decorator(login_required)
+    def get(self, *args, **kwargs):
+        return super().get(*args, **kwargs)
 
 
 # Class for the User Login view
