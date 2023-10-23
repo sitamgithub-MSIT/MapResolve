@@ -73,3 +73,12 @@ class AjaxFormMixin(object):
             return JsonResponse({"result": "Success", "message": ""})
 
         return response
+
+
+# Method handling directions from Google Maps API
+def directions(*args, **kwargs):
+    pass
+
+
+
+
