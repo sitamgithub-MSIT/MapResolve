@@ -1,8 +1,9 @@
 # Django imports
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, reverse
 from django.views.generic.edit import FormView
 from django.views.generic.base import TemplateView
 from django.http import JsonResponse
+from django.conf import settings
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -49,7 +50,7 @@ class LoginView(FormView):
                     backend="django.contrib.auth.backends.ModelBackend",
                 )
 
-                result = "success"
+                result = "Success"
                 message = "Login successful!"
 
             else:
@@ -64,33 +65,74 @@ class LoginView(FormView):
         return response
 
 
-# # Class for the User Registration view
+# Class for the User Registration view
+class RegisterView(FormView):
+    # Template for the User Registration view
+    template_name = "#"
 
-# class RegisterView(FormView):
-#     # Template for the User Registration view
-#     template_name = "users/register.html"
+    # Form class for the User Registration view
+    form_class = MyUserCreationForm
+    success_url = "/"
 
-#     # Form class for the User Registration view
-#     form_class = MyUserCreationForm
+    # context data for the User Registration view
+    def get_context_data(self, **kwargs):
+        # Getting the context data
+        context = super().get_context_data(**kwargs)
+        # Adding the recaptcha key to the context data
+        context["recaptcha_key"] = settings.RECAPTCHA_KEY
 
-#     # Method for the User Registration view
-#     def form_valid(self, form):
-#         # Getting the form data
-#         name = form.cleaned_data.get("name")
-#         username = form.cleaned_data.get("username")
-#         email = form.cleaned_data.get("email")
-#         password = form.cleaned_data.get("password1")
+        # Returning the context
+        return context
 
-#         # Creating the user
-#         user = User.objects.create_user(
-#             username=username, email=email, password=password
-#         )
+    # Method for the User Registration view
+    def form_valid(self, form):
+        response = super(AjaxFormMixin, self).form_valid(form)
 
-#         # Creating the profile
-#         profile = Profile.objects.create(user=user)
+        if self.request.is_ajax():
+            # Getting the form data
+            token = form.cleaned_data.get("token")
 
-#         # Logging in the user
-#         login(self.request, user)
+            # Validating the recaptcha
+            result = recaptchavalidate(token)
 
-#         # Returning the response
-#         return redirect("users:profile", username=username)
+            if result["success"]:
+                # Creating the user
+                user = form.save()
+                user.email = user.username
+                user.save()
+
+                up = user.userprofile
+                up.captcha_score = result["score"]
+                up.save()
+
+                # Logging in the user
+                login(
+                    self.request,
+                    user,
+                    backend="django.contrib.auth.backends.ModelBackend",
+                )
+
+                # Success message
+                result = "Success"
+                message = "Registration successful!"
+
+            # Json data to be returned to the ajax call
+            data = {"result": result, "message": message}
+            return JsonResponse(data)
+
+        # Returning the response
+        return response
+
+
+# Class for the User Logout view
+class LogoutView(TemplateView):
+    # Template for the User Logout view
+    template_name = "#"
+
+    # Method for the User Logout view
+    def get(self, request, *args, **kwargs):
+        # Logging out the user
+        logout(request)
+
+        # Redirecting to the home page
+        return redirect(reverse("users:login"))
