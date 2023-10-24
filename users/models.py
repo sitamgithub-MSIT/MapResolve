@@ -21,13 +21,13 @@ class Profile(models.Model):
     address = models.CharField(
         verbose_name="Address", max_length=100, null=True, blank=True
     )
-    town = models.CharFieldv(
+    town = models.CharField(
         verbose_name="Town/City", max_length=100, null=True, blank=True
     )
     county = models.CharField(
         verbose_name="County", max_length=100, null=True, blank=True
     )
-    postcode = models.CharFieldv(
+    postcode = models.CharField(
         verbose_name="Post Code", max_length=8, null=True, blank=True
     )
     country = models.CharField(
