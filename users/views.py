@@ -37,7 +37,7 @@ class AccountView(TemplateView):
 
 
 # Method for the Profile view
-def ProfileView(request):
+def profile_view(request):
     # Getting the user
     user = request.user
 
