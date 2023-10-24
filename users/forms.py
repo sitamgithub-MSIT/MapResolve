@@ -11,17 +11,17 @@ from .models import Profile
 # Form for the User Creation model
 class MyUserCreationForm(UserCreationForm):
     # Fields for the User Creation form
-    name = forms.CharField(
+    first_name = forms.CharField(
         max_length=30,
         required=True,
         widget=forms.TextInput(attrs={"placeholder": "*Your first name.."}),
     )
-    username = forms.CharField(
+    last_name = forms.CharField(
         max_length=30,
         required=True,
         widget=forms.TextInput(attrs={"placeholder": "*Your last name.."}),
     )
-    email = forms.EmailField(
+    username = forms.EmailField(
         max_length=254,
         required=True,
         widget=forms.EmailInput(attrs={"placeholder": "*Your email address.."}),
@@ -43,7 +43,7 @@ class MyUserCreationForm(UserCreationForm):
     # Meta class for the User model
     class Meta:
         model = User
-        fields = ("name", "username", "email", "password1", "password2")
+        fields = ("first_name", "last_name", "username", "password1", "password2")
 
 
 # Form for the User Authentication form
