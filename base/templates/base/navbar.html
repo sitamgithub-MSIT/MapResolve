@@ -13,10 +13,10 @@
     <li><a href="{% url 'users:profile' %}">User Profile</a></li>
     {% endif %}
 
-    {% if "path" in request.path %}
-    <li><a class="active" href="{% url 'main:path' %}">Route</a></li>
+    {% if "route" in request.path %}
+    <li><a class="active" href="{% url 'main:route' %}">Route</a></li>
     {% else %}
-    <li><a href="{% url 'main:path' %}">Route</a></li>
+    <li><a href="{% url 'main:route' %}">Route</a></li>
     {% endif %}
 
     {% if "map" in request.path %}
