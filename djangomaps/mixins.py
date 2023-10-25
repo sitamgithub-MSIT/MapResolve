@@ -76,9 +76,76 @@ class AjaxFormMixin(object):
 
 
 # Method handling directions from Google Maps API
-def directions(*args, **kwargs):
-    pass
+def Directions(*args, **kwargs):
+    # Getting the params from the kwargs
+    lat_a = kwargs.get("lat_a")
+    long_a = kwargs.get("long_a")
+    lat_b = kwargs.get("lat_b")
+    long_b = kwargs.get("long_b")
+    lat_c = kwargs.get("lat_c")
+    long_c = kwargs.get("long_c")
+    lat_d = kwargs.get("lat_d")
+    long_d = kwargs.get("long_d")
 
+    # Getting the origin, destination and waypoints
+    origin = f"{lat_a},{long_a}"
+    destination = f"{lat_b},{long_b}"
+    waypoints = f"{lat_c},{long_c}|{lat_d},{long_d}"
 
+    # Getting the directions from the Google Maps API
+    result = requests.get(
+        "https://maps.googleapis.com/maps/api/directions/json?",
+        params={
+            "origin": origin,
+            "destination": destination,
+            "waypoints": waypoints,
+            "key": settings.GOOGLE_API_KEY,
+        },
+    )
 
+    # Json data to be returned
+    directions = result.json()
 
+    # If the status is OK
+    if directions["status"] == "OK":
+        # Getting the routes
+        routes = directions["routes"][0]["legs"]
+
+        # Initializing the distance and duration
+        distance = 0
+        duration = 0
+        routes_list = []
+
+        # Getting the distance and duration
+        for route in routes:
+            # Adding the distance and duration
+            distance += route["distance"]["value"]
+            duration += route["duration"]["value"]
+
+            # Getting the route step
+            route_step = {
+                "origin": routes[route]["start_address"],
+                "destination": routes[route]["end_address"],
+                "distance": routes[route]["distance"]["text"],
+                "duration": routes[route]["duration"]["text"],
+                "steps": [
+                    [
+                        s["distance"]["text"],
+                        s["duration"]["text"],
+                        s["html_instructions"],
+                    ]
+                    for s in routes[route]["steps"]
+                ],
+            }
+
+            # Appending the route step to the routes list
+            routes_list.append(route_step)
+
+        # Returning the response
+        return {
+            "origin": origin,
+            "destination": destination,
+            "distance": f"{round(distance/1000, 2)} Km",
+            "duration": format_timespan(duration),
+            "route": routes_list,
+        }

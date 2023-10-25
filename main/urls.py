@@ -8,4 +8,7 @@ from . import views
 app_name = "main"
 
 # Setting the urlpatterns variable to a list of paths
-urlpatterns = []
+urlpatterns = [
+    path("route", views.homepage, name=""),
+    path("map", views.about, name=""),
+]

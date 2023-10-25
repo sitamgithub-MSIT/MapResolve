@@ -1,0 +1,9 @@
+<!-- Add this to your base.html file -->
+
+{% load static %}
+
+<a href="{% url 'users:account' %}">
+  <div class="brand-logo">
+    <img class="logo" src="{% static '' %}" />
+  </div>
+</a>
