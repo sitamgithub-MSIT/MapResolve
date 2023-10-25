@@ -9,6 +9,6 @@ app_name = "main"
 
 # Setting the urlpatterns variable to a list of paths
 urlpatterns = [
-    path("route", views.homepage, name=""),
-    path("map", views.about, name=""),
+    path("route", views.homepage, name="routing"),
+    path("map", views.about, name="mapsview"),
 ]
