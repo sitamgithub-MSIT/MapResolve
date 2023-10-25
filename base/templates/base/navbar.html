@@ -1,30 +1,39 @@
+<!-- Add this to main.html file -->
+
 {% if request.user.is_authenticated %}
 <ul class="sidenav">
 
+    <!-- Add different pages link here -->
+
+    <!-- Account page link -->
     {% if request.path == "/" %}
     <li><a class="active" href="{% url 'users:account' %}">User Account</a></li>
     {% else %}
     <li><a href="{% url 'users:account' %}">User Account</a></li>
     {% endif %}
 
+    <!-- Profile page link -->
     {% if "profile" in request.path %}
     <li><a class="active" href="{% url 'users:profile' %}">User Profile</a></li>
     {% else %}
     <li><a href="{% url 'users:profile' %}">User Profile</a></li>
     {% endif %}
 
+    <!-- Route page link -->
     {% if "route" in request.path %}
     <li><a class="active" href="{% url 'main:route' %}">Route</a></li>
     {% else %}
     <li><a href="{% url 'main:route' %}">Route</a></li>
     {% endif %}
 
+    <!-- Map page link -->
     {% if "map" in request.path %}
     <li><a class="active" href="{% url 'main:map' %}">Map</a></li>
     {% else %}
     <li><a href="{% url 'main:map' %}">Map</a></li>
     {% endif %}
 
+    <!-- Logout page link -->
     {% if "logout" in request.path %}
     <li><a class="active" href="{% url 'users:logout' %}">Sign Out</a></li>
     {% else %}
@@ -36,12 +45,14 @@
 {% else %}
 <ul class="sidenav">
 
+    <!-- Sign In page link -->
     {% if "login" in request.path %}
     <li><a class="active" href="{% url 'users:login' %}">Sign In</a></li>
     {% else %}
     <li><a href="{% url 'users:login' %}">Sign In</a></li>
     {% endif %}
 
+    <!-- Register/Sign up page link -->
     {% if "register" in request.path %}
     <li><a class="active" href="{% url 'users:register' %}">Sign Up</a></li>
     {% else %}
