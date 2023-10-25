@@ -82,7 +82,7 @@ def profile_view(request):
 
 
 # Class for the User Login view
-class LoginView(FormView):
+class LoginView(AjaxFormMixin, FormView):
     # Template for the User Login view
     template_name = "users/login.html"
 
@@ -126,7 +126,7 @@ class LoginView(FormView):
 
 
 # Class for the User Registration view
-class RegisterView(FormView):
+class RegisterView(AjaxFormMixin, FormView):
     # Template for the User Registration view
     template_name = "users/register.html"
 
