@@ -117,10 +117,10 @@ def Directions(*args, **kwargs):
         routes_list = []
 
         # Getting the distance and duration
-        for route in routes:
+        for route in range(len(routes)):
             # Adding the distance and duration
-            distance += route["distance"]["value"]
-            duration += route["duration"]["value"]
+            distance += int(routes[route]["distance"]["value"])
+            duration += int(routes[route]["duration"]["value"])
 
             # Getting the route step
             route_step = {
