@@ -22,7 +22,7 @@ def routing(request):
 
 
 # Function based view for displaying a map
-def map(request):
+def mapsview(request):
     # Getting the params
     lat_a = request.GET.get("lat_a")
     long_a = request.GET.get("long_a")
