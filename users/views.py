@@ -139,7 +139,7 @@ class RegisterView(FormView):
         # Getting the context data
         context = super().get_context_data(**kwargs)
         # Adding the recaptcha key to the context data
-        context["recaptcha_key"] = settings.RECAPTCHA_KEY
+        context["recaptcha_site_key"] = settings.RECAPTCHA_PUBLIC_KEY
 
         # Returning the context
         return context
