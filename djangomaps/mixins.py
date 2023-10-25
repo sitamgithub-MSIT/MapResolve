@@ -25,7 +25,7 @@ def FormErrorsMixin(*args):
 # Method for the recaptcha validation
 def recaptchavalidate(token):
     # Data to be sent to the Google API
-    data = {"secret": settings.RECAPTCHA_SECRET_KEY, "response": token}
+    data = {"secret": settings.RECAPTCHA_PRIVATE_KEY, "response": token}
 
     # Sending the request to the Google API
     r = requests.post("https://www.google.com/recaptcha/api/siteverify", data=data)
