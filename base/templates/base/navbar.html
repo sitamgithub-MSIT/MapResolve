@@ -14,30 +14,30 @@
 
     <!-- Profile page link -->
     {% if "profile" in request.path %}
-    <li><a class="active" href="{% url 'users:profile' %}">User Profile</a></li>
+    <li><a class="active" href="{% url 'users:profile_view' %}">User Profile</a></li>
     {% else %}
-    <li><a href="{% url 'users:profile' %}">User Profile</a></li>
+    <li><a href="{% url 'users:profile_view' %}">User Profile</a></li>
     {% endif %}
 
     <!-- Route page link -->
     {% if "route" in request.path %}
-    <li><a class="active" href="{% url 'main:route' %}">Route</a></li>
+    <li><a class="active" href="{% url 'main:routing' %}">Route</a></li>
     {% else %}
-    <li><a href="{% url 'main:route' %}">Route</a></li>
+    <li><a href="{% url 'main:routing' %}">Route</a></li>
     {% endif %}
 
     <!-- Map page link -->
     {% if "map" in request.path %}
-    <li><a class="active" href="{% url 'main:map' %}">Map</a></li>
+    <li><a class="active" href="{% url 'main:maps_view' %}">Map</a></li>
     {% else %}
-    <li><a href="{% url 'main:map' %}">Map</a></li>
+    <li><a href="{% url 'main:maps_view' %}">Map</a></li>
     {% endif %}
 
     <!-- Logout page link -->
     {% if "logout" in request.path %}
-    <li><a class="active" href="{% url 'users:logout' %}">Sign Out</a></li>
+    <li><a class="active" href="{% url 'users:logout_view' %}">Sign Out</a></li>
     {% else %}
-    <li><a href="{% url 'users:logout' %}">Sign Out</a></li>
+    <li><a href="{% url 'users:logout_view' %}">Sign Out</a></li>
     {% endif %}
 
 </ul>
