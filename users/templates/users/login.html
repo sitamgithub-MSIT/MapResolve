@@ -13,7 +13,7 @@
 
 <div class="container">
 
-    <form id="signinform" method="POST" action="/sign-in">
+    <form id="signinform" method="POST" action="/login">
         {% csrf_token %}
         <label for="username">Username</label>
         {{form.username}}

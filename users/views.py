@@ -84,7 +84,7 @@ def profile_view(request):
 # Class for the User Login view
 class LoginView(FormView):
     # Template for the User Login view
-    template_name = "#"
+    template_name = "users/login.html"
 
     # Form class for the User Login view
     form_class = AuthForm
@@ -128,7 +128,7 @@ class LoginView(FormView):
 # Class for the User Registration view
 class RegisterView(FormView):
     # Template for the User Registration view
-    template_name = "#"
+    template_name = "users/register.html"
 
     # Form class for the User Registration view
     form_class = MyUserCreationForm
@@ -184,15 +184,25 @@ class RegisterView(FormView):
         return response
 
 
-# Class for the User Logout view
-class LogoutView(TemplateView):
-    # Template for the User Logout view
-    template_name = "#"
+# Method for the User Logout view
+# class LogoutView(TemplateView):
+#     # Template for the User Logout view
+#     template_name = ""
 
-    # Method for the User Logout view
-    def get(self, request, *args, **kwargs):
-        # Logging out the user
-        logout(request)
+#     # Method for the User Logout view
+#     def get(self, request, *args, **kwargs):
+#         # Logging out the user
+#         logout(request)
 
-        # Redirecting to the home page
-        return redirect(reverse("users:login"))
+#         # Redirecting to the home page
+#         return redirect(reverse("users:login"))
+    
+def logout_view(request):
+
+    # Logging out the user
+	logout(request)
+
+    # Redirecting to the sign-in page
+	return redirect(reverse('users:login'))
+
+
