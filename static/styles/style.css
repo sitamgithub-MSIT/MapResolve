@@ -4,6 +4,11 @@ body {font-family: 'Courier Prime', monospace;}
 body {
 
   margin: 0;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.8;
+  background-color: #92b1bbc6;
+  
 }
 
 body, html, .map-container {
@@ -36,10 +41,11 @@ ul.sidenav li a {
   color: #000;
   padding: 8px 16px;
   text-decoration: none;
+  transition: background-color 0.3s
 }
 
 ul.sidenav li a.active {
-  background-color: #9c07b6;
+  background-color: #011e2d; 
   color: white;
 }
 
@@ -90,17 +96,17 @@ input[type=text], input[type=email], input[type=password], select, textarea {
 
 
 ::-webkit-input-placeholder { /* Edge */
-  color: #9c07b6;
+  color: #000;
   font-family: 'Courier Prime', monospace;
 }
 
 :-ms-input-placeholder { /* Internet Explorer */
-  color: #9c07b6;
+  color: #000;
   font-family: 'Courier Prime', monospace;
 }
 
 ::placeholder {
-  color: #9c07b6;
+  color: #000;
   font-family: 'Courier Prime', monospace;
 }
 
@@ -111,7 +117,7 @@ input[type=text], input[type=email], input[type=password], select, textarea {
 } */
 
 input, select{
-  color: #9c07b6;
+  color: #062418;
   font-family: 'Courier Prime', monospace;
 
 }
@@ -150,12 +156,12 @@ input, select{
 
 /* On mouse-over, add a grey background color */
 .check-container:hover input ~ .checkmark {
-  background-color: #ccc;
+  background-color: white;
 }
 
 /* When the checkbox is checked, add a green background */
 .check-container input:checked ~ .checkmark {
-  background-color: #9c07b6;
+  background-color: #02673e;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -223,11 +229,11 @@ input, select{
 }
 
 input:checked + .slider {
-  background-color: #9c07b6;
+  background-color: #081d5d;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #9c07b6;
+  box-shadow: 0 0 1px #081d5d;
 }
 
 input:checked + .slider:before {
@@ -246,7 +252,7 @@ input:checked + .slider:before {
 }
 
 button[type=submit] {
-  background-color: #9c07b6;
+  background-color: #062a97;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -255,7 +261,7 @@ button[type=submit] {
 }
 
 button[type=submit]:hover {
-  background-color: #730786;
+  background-color: #081d5d;
 }
 
 .container {
@@ -281,12 +287,12 @@ table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #9c07b6;
+  background-color: #062a97;
   color: white;
 }
 
 .selected {
-  background-color: #730786;
+  background-color: #062a97;
   color: #FFF;
 }
 
