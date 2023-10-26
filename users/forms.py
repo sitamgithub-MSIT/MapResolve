@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django import forms
 
 # Local imports
-from .models import Profile
+from .models import UserProfile
 
 
 # Form for the User Creation model
@@ -81,7 +81,7 @@ class UserProfileForm(forms.ModelForm):
 
     # Meta class for the User Profile model
     class Meta:
-        model = Profile
+        model = UserProfile
         fields = (
             "address",
             "town",
