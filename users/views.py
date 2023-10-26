@@ -47,7 +47,7 @@ def profile_view(request):
     # Getting the user profile form
     form = UserProfileForm(instance=profile)
 
-    if request.is_ajax():
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
         form = UserProfileForm(request.POST, instance=profile)
 
         if form.is_valid():
@@ -94,7 +94,7 @@ class LoginView(AjaxFormMixin, FormView):
     def form_valid(self, form):
         response = super(AjaxFormMixin, self).form_valid(form)
 
-        if self.request.is_ajax():
+        if self.request.headers.get("x-requested-with") == "XMLHttpRequest":
             # Getting the form data
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
@@ -148,7 +148,7 @@ class RegisterView(AjaxFormMixin, FormView):
     def form_valid(self, form):
         response = super(AjaxFormMixin, self).form_valid(form)
 
-        if self.request.is_ajax():
+        if self.request.headers.get("x-requested-with") == "XMLHttpRequest":
             # Getting the form data
             token = form.cleaned_data.get("token")
 
