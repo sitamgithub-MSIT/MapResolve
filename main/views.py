@@ -67,4 +67,4 @@ def maps_view(request):
     }
 
     # Returning the response
-    return render(request, "main/map.html", context)
+    return render(request, "main/maps.html", context)

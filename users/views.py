@@ -50,11 +50,14 @@ def profile_view(request):
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
         form = UserProfileForm(request.POST, instance=profile)
 
+        result = "Error"
+        message = "Something went wrong!"
+
         if form.is_valid():
             # Saving the form
-            user = form.save()
-            user.has_profile = True
-            user.save()
+            obj = form.save()
+            obj.has_profile = True
+            obj.save()
 
             # Success message
             result = "Success"
@@ -64,7 +67,6 @@ def profile_view(request):
             # Error message
             message = FormErrorsMixin(form)
 
-        # Json data to be returned to the ajax call
         data = {"result": result, "message": message}
         return JsonResponse(data)
 
