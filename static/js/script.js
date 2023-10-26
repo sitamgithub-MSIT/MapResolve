@@ -1,6 +1,4 @@
-// This file contains main javascript functions used in the project
-
-
+// This is the function toggles the directions table on the map page 
 function DirectionsToggle() {
     var el = $('#dir-toggle');
     var dir_table = $('#dir-table')
@@ -16,7 +14,7 @@ function DirectionsToggle() {
 }
 
 
-
+// This function is used to show the alert message
 function ShowAlert(title, message, type, redirect) {
 
     if (redirect) {
@@ -48,7 +46,7 @@ function ShowAlert(title, message, type, redirect) {
 };
 
 
-
+// Function to show the password on the login and signup pages
 function showPword() {
     var x = document.getElementsByClassName("password");
     for (let i = 0; i < x.length; i++) {
@@ -62,18 +60,20 @@ function showPword() {
 
 var temp_button_text;
 
+// Custom function to show a loading spinner on the submit button
 function CustomFormSubmitPost(e) {
     var el = $(e);
     temp_button_text = el.text()
     el.attr('disabled', 'disabled').text("").append('<class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>Loading...');
 };
 
+
 function CustomFormSubmitResponse(e) {
     var el = $(e);
     el.removeAttr('disabled').text(temp_button_text);
 };
 
-
+// This function is used to submit the signup form data and return the response to the user
 
 "use strict";
 var FormControls = function () {
@@ -117,6 +117,7 @@ var FormControls = function () {
         })
     };
 
+    // Function to submit the login form data and return the response to the user
     var usersignin = function () {
         var form = $('#signinform')
         form.submit(function (event) {
@@ -147,6 +148,7 @@ var FormControls = function () {
         });
     };
 
+    // Function to submit the profile form data and return the response to the user
     var userprofile = function () {
 
         var form = $('#profileform')
@@ -211,12 +213,12 @@ $(function () {
     }
     var csrftoken = getCookie('csrftoken');
     function csrfSafeMethod(method) {
-        // these HTTP methods do not require CSRF protection
+        // These HTTP methods do not require CSRF protection
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
     }
     function sameOrigin(url) {
-        // test that a given url is a same-origin URL
-        // url could be relative or scheme relative or absolute
+        // Test that a given url is a same-origin URL
+        // URL could be relative or scheme relative or absolute
         var host = document.location.host; // host + port
         var protocol = document.location.protocol;
         var sr_origin = '//' + host;
@@ -224,7 +226,7 @@ $(function () {
         // Allow absolute or scheme relative URLs to same origin
         return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
             (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
-            // or any other URL that isn't scheme relative or absolute i.e relative.
+            // Or any other URL that isn't scheme relative or absolute i.e relative.
             !(/^(\/\/|http:|https:).*/.test(url));
     }
     $.ajaxSetup({
