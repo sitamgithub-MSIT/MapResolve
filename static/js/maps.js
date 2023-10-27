@@ -31,6 +31,12 @@ const waypts = [
 ];
 
 // This function is used to calculate the route and display it on the map 
+/**
+ * Calculates and displays the route between the origin and destination using the provided directions service and display.
+ *
+ * @param {google.maps.DirectionsService} directionsService - The directions service to use for calculating the route.
+ * @param {google.maps.DirectionsRenderer} directionsDisplay - The directions renderer to use for displaying the route.
+ */
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     directionsService.route({
         origin: origin,

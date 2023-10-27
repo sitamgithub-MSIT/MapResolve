@@ -76,8 +76,16 @@ function CustomFormSubmitResponse(e) {
 // This function is used to submit the signup form data and return the response to the user
 
 "use strict";
+/**
+ * FormControls module that handles form submissions for signup, signin, and profile forms.
+ * @module FormControls
+ */
 var FormControls = function () {
 
+    /**
+     * Function to submit the signup form data and return the response to the user.
+     * @function usersignup
+     */
     var usersignup = function () {
 
         var form = $('#signupform')
@@ -117,7 +125,10 @@ var FormControls = function () {
         })
     };
 
-    // Function to submit the login form data and return the response to the user
+    /**
+     * Function to submit the login form data and return the response to the user.
+     * @function usersignin
+     */
     var usersignin = function () {
         var form = $('#signinform')
         form.submit(function (event) {
@@ -148,7 +159,10 @@ var FormControls = function () {
         });
     };
 
-    // Function to submit the profile form data and return the response to the user
+    /**
+     * Function to submit the profile form data and return the response to the user.
+     * @function userprofile
+     */
     var userprofile = function () {
 
         var form = $('#profileform')
@@ -182,6 +196,10 @@ var FormControls = function () {
     };
 
     return {
+        /**
+         * Initializes the FormControls module.
+         * @function init
+         */
         init: function () {
             usersignup();
             usersignin();

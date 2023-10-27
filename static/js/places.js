@@ -24,6 +24,12 @@ function initAutoComplete() {
 }
 
 // Function to get the place details from the autocomplete
+/**
+ * Function that is called when the place is changed in the autocomplete object.
+ * It gets the place details from the autocomplete object and stores the address components in the form fields.
+ * If the place has no geometry, it asks the user to enter the address.
+ * If the place has a geometry, it stores the latitude and longitude in the form fields.
+ */
 function onPlaceChanged() {
     // Get the place details from the autocomplete object.
     var place = autocomplete.getPlace();

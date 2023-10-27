@@ -1,14 +1,23 @@
-// This is the API key for the Google Maps API
+/**
+ * Loads the Google Maps API and initializes the autocomplete for the specified fields.
+ * @param {string} google_api_key - The API key for the Google Maps API.
+ * @param {string} base_country - The country to restrict the autocomplete results to.
+ */
 $.getScript("https://maps.googleapis.com/maps/api/js?key=" + google_api_key + "&libraries=places")
     .done(function (script, textStatus) {
         google.maps.event.addDomListener(window, "load", initAutocomplete())
 
     })
 
-
+/**
+ * The list of fields to initialize the autocomplete for.
+ * @type {string[]}
+ */
 var auto_fields = ['a', 'b', 'c', 'd']
 
-// This function is used to initialize the autocomplete
+/**
+ * Initializes the autocomplete for the specified fields.
+ */
 function initAutocomplete() {
 
     for (i = 0; i < auto_fields.length; i++) {
@@ -35,7 +44,10 @@ function initAutocomplete() {
     });
 }
 
-// Function to get the place details from the autocomplete
+/**
+ * Gets the place details from the autocomplete for the specified field.
+ * @param {string} addy - The field to get the place details for.
+ */
 function onPlaceChanged(addy) {
 
     var auto = window['autocomplete_' + addy]
@@ -60,7 +72,10 @@ function onPlaceChanged(addy) {
     });
 }
 
-// Function to validate the form 
+/**
+ * Validates the form by checking if all the required fields have been filled.
+ * @returns {boolean} - True if the form is valid, false otherwise.
+ */
 function validateForm() {
     var valid = true;
     $('.geo').each(function () {
@@ -72,7 +87,9 @@ function validateForm() {
     return valid
 }
 
-// Function to calculate the route
+/**
+ * Calculates the route and redirects to the map page.
+ */
 function CalcRoute() {
 
     if (validateForm() == true) {
