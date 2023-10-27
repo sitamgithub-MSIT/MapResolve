@@ -1,13 +1,9 @@
-<!-- Add this to your base.html file -->
+<!-- This code block is a template for a logo that can be added to a Django project's base.html file. It loads the static files and displays a clickable logo in the top left corner of the site. The logo can be changed by replacing the static file with some other logo. -->
 
 {% load static %}
 
 <a href="{% url 'users:account' %}">
-  <!-- This is the logo that will appear in the top left corner of the site -->
-
   <div class="brand-logo">
-    <!-- The logo can be changed by replacing the static file with some other logo -->
-
     <img class="logo" src="{% static 'images/logo.svg' %}" />
   </div>
 </a>
