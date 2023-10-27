@@ -1,3 +1,6 @@
+<!--
+This template extends the 'base/main.html' template and displays the user's profile information. If the user has a profile, their address information is displayed in a table. If not, a label is displayed to add an address. The user can change their address by typing in the 'id-google-address' input field. The form is submitted to the '/profile' URL using the POST method. The form contains fields for address, town/city, county, postal code, country, longitude, and latitude. The 'Update' button is disabled until the user types in the 'id-google-address' input field. The script at the bottom of the template sets the 'google_api_key' and 'base_country' variables and loads the 'places.js' script.
+-->
 {% extends 'base/main.html' %}
 {% load static %}
 
