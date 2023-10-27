@@ -1,3 +1,11 @@
+"""
+This module contains forms for user authentication and profile creation/updation.
+
+The module contains the following classes:
+    - MyUserCreationForm: A form for creating new users, including all the required fields plus a reCAPTCHA field.
+    - AuthForm: A form for authenticating users.
+    - UserProfileForm: A form for creating or updating a user's profile information.
+"""
 # Django imports
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -10,7 +18,19 @@ from .models import UserProfile
 
 # Form for the User Creation model
 class MyUserCreationForm(UserCreationForm):
-    # Fields for the User Creation form
+    """
+    A form for creating new users, including all the required
+    fields plus a reCAPTCHA field.
+
+    Attributes:
+        first_name (CharField): A field for the user's first name.
+        last_name (CharField): A field for the user's last name.
+        username (EmailField): A field for the user's email address.
+        password1 (CharField): A field for the user's password.
+        password2 (CharField): A field for confirming the user's password.
+        token (CharField): A hidden field for the reCAPTCHA token.
+    """
+
     first_name = forms.CharField(
         max_length=30,
         required=True,
@@ -48,6 +68,16 @@ class MyUserCreationForm(UserCreationForm):
 
 # Form for the User Authentication form
 class AuthForm(AuthenticationForm):
+    """
+    A form for authenticating users.
+
+    Inherits from Django's built-in AuthenticationForm and adds custom fields for email and password input.
+
+    Attributes:
+        username (EmailField): A field for the user's email address.
+        password (CharField): A field for the user's password.
+    """
+
     # Fields for the User Authentication form
     username = forms.EmailField(
         max_length=254,
@@ -68,6 +98,14 @@ class AuthForm(AuthenticationForm):
 
 # Form for the User Profile form
 class UserProfileForm(forms.ModelForm):
+    """
+    A form for creating or updating a user's profile information.
+
+    Includes fields for the user's address, town, county, postcode, country, longitude, and latitude.
+
+    Inherits from Django's built-in ModelForm class and uses the UserProfile model.
+    """
+
     # Char fields for the Profile form
     address = forms.CharField(max_length=100, required=True, widget=forms.HiddenInput())
     town = forms.CharField(max_length=100, required=True, widget=forms.HiddenInput())
