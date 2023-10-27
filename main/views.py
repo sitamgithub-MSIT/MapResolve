@@ -9,8 +9,18 @@ from djangomaps.mixins import Directions
 # Create your views here.
 
 
-# Function based view for the routing
 def routing(request):
+    """
+    Function based view for the routing.
+
+    This function renders the 'path.html' template with the context containing the Google API key and base country.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object containing the rendered 'path.html' template with the context.
+    """
     # Getting the context
     context = {
         "google_api_key": settings.GOOGLE_API_KEY,
@@ -21,8 +31,18 @@ def routing(request):
     return render(request, "main/path.html", context)
 
 
-# Function based view for displaying a map
 def maps_view(request):
+    """
+    Function based view for displaying a map.
+
+    Renders the maps view with the given parameters.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object containing the rendered 'maps.html' template with the context.
+    """
     # Getting the params
     lat_a = request.GET.get("lat_a")
     long_a = request.GET.get("long_a")
