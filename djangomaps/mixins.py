@@ -1,7 +1,32 @@
+"""
+This module contains mixins and functions for Django views.
+
+The module contains the following:
+- FormErrorsMixin: A mixin that returns error messages for a form.
+- recaptchavalidate: A function that validates a reCAPTCHA token using the Google API.
+- urlappend: A function that appends query parameters to a URL and returns a redirect response.
+- AjaxFormMixin: A mixin for handling AJAX form submissions.
+- Directions: A function that takes in latitude and longitude coordinates for two points (origin and destination) and optionally for two waypoints. It then uses the Google Maps API to get the directions between the points and returns the distance, duration and route steps as a dictionary.
+"""
+
 # Importing from Django modules
 from django.http import JsonResponse
 from django.conf import settings
 from django.shortcuts import redirect
+from django.utils.timesince import timesince
+
+# Other imports
+import json
+import requests
+import datetime
+from urllib.parse import urlencode
+from humanfriendly import format_timespan
+
+# Importing from Django modules
+from django.http import JsonResponse
+from django.conf import settings
+from django.shortcuts import redirect
+from django.utils.timesince import timesince
 
 # Other imports
 import json
@@ -13,6 +38,15 @@ from humanfriendly import format_timespan
 
 # Form errors checking
 def FormErrorsMixin(*args):
+    """
+    A mixin that returns error messages for a form.
+
+    Args:
+        *args: A variable-length argument list of form fields.
+
+    Returns:
+        str: A string containing error messages for the form fields.
+    """
     message = ""
 
     for f in args:
@@ -24,18 +58,34 @@ def FormErrorsMixin(*args):
 
 # Method for the recaptcha validation
 def recaptchavalidate(token):
-    # Data to be sent to the Google API
-    data = {"secret": settings.RECAPTCHA_PRIVATE_KEY, "response": token}
+    """
+    Validates a reCAPTCHA token using the Google API.
 
+    Args:
+        token (str): The reCAPTCHA token to validate.
+
+    Returns:
+        dict: A dictionary containing the response from the Google API.
+    """
     # Sending the request to the Google API
-    r = requests.post("https://www.google.com/recaptcha/api/siteverify", data=data)
-    result = r.json()
-
-    return result
+    return requests.post(
+        "https://www.google.com/recaptcha/api/siteverify",
+        data={"secret": settings.RECAPTCHA_PRIVATE_KEY, "response": token},
+    ).json()
 
 
 # Method for the url appending with the params
 def urlappend(**kwargs):
+    """
+    Appends query parameters to a URL and returns a redirect response.
+
+    Args:
+        url (str): The URL to append the query parameters to.
+        params (dict): The query parameters to append to the URL.
+
+    Returns:
+        A redirect response with the query parameters appended to the URL.
+    """
     # Getting the url and the params
     url = kwargs.get("url")
     params = kwargs.get("params")
@@ -46,7 +96,7 @@ def urlappend(**kwargs):
     # Appending the params to the url
     if params:
         query_string = urlencode(params)
-        response["Location"] += "?" + query_string
+        response["Location"] += f"?{query_string}"
 
     # Returning the response
     return response
@@ -54,8 +104,24 @@ def urlappend(**kwargs):
 
 # Class for the Ajax form reponse
 class AjaxFormMixin(object):
+    """
+    A mixin for handling AJAX form submissions.
+
+    This mixin provides methods for handling form validation and invalidation
+    when the form is submitted via AJAX. It checks for the presence of the
+    "x-requested-with" header in the request, and returns a JSON response
+    containing the result of the form submission.
+    """
+
     # Method for the form invalidation
     def form_invalid(self, form):
+        """
+        Handle an invalid form submission.
+
+        This method is called when the form submission is invalid. It returns
+        a JSON response containing the form errors if the request was made via
+        AJAX, otherwise it returns the default response from the parent class.
+        """
         response = super(AjaxFormMixin, self).form_invalid(form)
 
         if self.request.headers.get("x-requested-with") == "XMLHttpRequest":
@@ -66,6 +132,13 @@ class AjaxFormMixin(object):
 
     # Method for the form validation
     def form_valid(self, form):
+        """
+        Handle a valid form submission.
+
+        This method is called when the form submission is valid. It returns
+        a JSON response containing the success message if the request was made
+        via AJAX, otherwise it returns the default response from the parent class.
+        """
         response = super(AjaxFormMixin, self).form_valid(form)
 
         if self.request.headers.get("x-requested-with") == "XMLHttpRequest":
@@ -77,6 +150,23 @@ class AjaxFormMixin(object):
 
 # Method handling directions from Google Maps API
 def Directions(*args, **kwargs):
+    """
+    This function takes in latitude and longitude coordinates for two points (origin and destination) and optionally for two waypoints.
+    It then uses the Google Maps API to get the directions between the points and returns the distance, duration and route steps as a dictionary.
+
+    Args:
+        lat_a (float): Latitude of the origin point.
+        long_a (float): Longitude of the origin point.
+        lat_b (float): Latitude of the destination point.
+        long_b (float): Longitude of the destination point.
+        lat_c (float, optional): Latitude of the first waypoint. Defaults to None.
+        long_c (float, optional): Longitude of the first waypoint. Defaults to None.
+        lat_d (float, optional): Latitude of the second waypoint. Defaults to None.
+        long_d (float, optional): Longitude of the second waypoint. Defaults to None.
+
+    Returns:
+        dict: A dictionary containing the origin, destination, distance, duration and route steps.
+    """
     # Getting the params from the kwargs
     lat_a = kwargs.get("lat_a")
     long_a = kwargs.get("long_a")
@@ -146,6 +236,6 @@ def Directions(*args, **kwargs):
             "origin": origin,
             "destination": destination,
             "distance": f"{round(distance/1000, 2)} Km",
-            "duration": format_timespan(duration),
+            "duration": timesince(duration),
             "route": routes_list,
         }
