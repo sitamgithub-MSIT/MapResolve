@@ -1,3 +1,14 @@
+/**
+ * This CSS file contains styles for the Django web application's map feature.
+ * It sets the font family, box-sizing, background color, and height of the body, html, and map-container elements.
+ * It also sets the height of the map-route element and the width and padding of the logo element.
+ * The styles for the side navigation bar include its width, background color, and list item styles.
+ * The div-container element's margin-left and padding are also set.
+ * The styles for the input fields, select, and textarea include their width, padding, border, border-radius, margin, and font family.
+ * The styles for the custom checkbox and switch include their position, size, and color.
+ * The styles for the submit button, container, and table include their background color, padding, border, and font family.
+ * The styles for the selected table row and payment form are also included.
+ */
 body {font-family: 'Courier Prime', monospace;}
 * {box-sizing: border-box;}
 
