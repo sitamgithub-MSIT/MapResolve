@@ -1,13 +1,15 @@
-# Importing the path function from django.urls
-from django.urls import path
+"""
+This module defines the URL patterns for the main app.
 
-# Importing the views.py file from the main app
+It imports the path function from django.urls and the views.py file from the main app.
+It sets the app_name variable to "main" and the urlpatterns variable to a list of paths.
+"""
+
+from django.urls import path
 from . import views
 
-# Setting the app_name variable to "main"
 app_name = "main"
 
-# Setting the urlpatterns variable to a list of paths
 urlpatterns = [
     path("route", views.routing, name="routing"),
     path("map", views.maps_view, name="maps_view"),
