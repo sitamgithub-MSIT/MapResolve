@@ -1,3 +1,11 @@
+"""
+This module contains views for user authentication and registration.
+It includes the following classes and functions:
+- AccountView: A view that displays the account page for a logged-in user.
+- profile_view: A view function for the user profile page.
+- LoginView: A view for user login.
+- RegisterView: A view for user registration.
+"""
 # Django imports
 from django.shortcuts import redirect, render, reverse
 from django.views.generic.edit import FormView
@@ -27,10 +35,15 @@ message = "Something went wrong!"
 
 # Class for the Account view
 class AccountView(TemplateView):
-    # Template for the Account view
+    """
+    A view that displays the account page for a logged-in user.
+
+    Attributes:
+        template_name (str): The name of the template to be rendered.
+    """
+
     template_name = "users/account.html"
 
-    # Method for the Account view
     @method_decorator(login_required)
     def get(self, *args, **kwargs):
         return super().get(*args, **kwargs)
@@ -38,6 +51,15 @@ class AccountView(TemplateView):
 
 # Method for the Profile view
 def profile_view(request):
+    """
+    View function for the user profile page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+    """
     # Getting the user
     user = request.user
 
@@ -85,15 +107,32 @@ def profile_view(request):
 
 # Class for the User Login view
 class LoginView(AjaxFormMixin, FormView):
-    # Template for the User Login view
-    template_name = "users/login.html"
+    """
+    A view for user login.
 
-    # Form class for the User Login view
+    Attributes:
+    - template_name (str): The name of the template to be used for rendering the view.
+    - form_class (class): The form class to be used for rendering the view.
+    - success_url (str): The URL to redirect to after a successful login.
+
+    Methods:
+    - form_valid(form): Handles the form submission and logs in the user if the form is valid.
+    """
+
+    template_name = "users/login.html"
     form_class = AuthForm
     success_url = "/"
 
-    # Method for the User Login view
     def form_valid(self, form):
+        """
+        Handles the form submission and logs in the user if the form is valid.
+
+        Args:
+        - form (AuthForm): The form instance containing the submitted data.
+
+        Returns:
+        - response (JsonResponse): A JSON response containing the result of the login attempt.
+        """
         response = super(AjaxFormMixin, self).form_valid(form)
 
         if self.request.headers.get("x-requested-with") == "XMLHttpRequest":
@@ -129,6 +168,14 @@ class LoginView(AjaxFormMixin, FormView):
 
 # Class for the User Registration view
 class RegisterView(AjaxFormMixin, FormView):
+    """
+    View for user registration.
+
+    Inherits from AjaxFormMixin and FormView.
+    Uses MyUserCreationForm as the form class.
+    On successful registration, logs in the user and returns a success message.
+    """
+
     # Template for the User Registration view
     template_name = "users/register.html"
 
@@ -198,13 +245,21 @@ class RegisterView(AjaxFormMixin, FormView):
 
 #         # Redirecting to the home page
 #         return redirect(reverse("users:login"))
-    
+
+
 def logout_view(request):
+    """
+    Logs out the user and redirects to the sign-in page.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponseRedirect: A redirect to the sign-in page.
+    """
 
     # Logging out the user
-	logout(request)
+    logout(request)
 
     # Redirecting to the sign-in page
-	return redirect(reverse('users:login'))
-
-
+    return redirect(reverse("users:login"))
