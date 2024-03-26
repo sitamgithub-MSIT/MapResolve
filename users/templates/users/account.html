@@ -1,12 +1,14 @@
 <!--
 This template extends the 'base/main.html' template and displays the user account details. It shows the user's username, first name, last name, and address if the user has a profile. If the user does not have a profile, it provides a link to create one. 
 -->
-{% extends 'base/main.html' %}
-{% load static %}
+{% extends 'base/main.html' %} 
+{% load static %} 
+{% block title %}Account | {% endblock %}
 
-{% block extend_head %}
 
-{% endblock %}
+{% block extend_head %} 
+
+{% endblock %} 
 
 
 {% block content %}
@@ -14,53 +16,55 @@ This template extends the 'base/main.html' template and displays the user accoun
 <h3>User Account</h3>
 
 <div class="container">
-    <h4>Account Details</h4>
-    <table>
-        <thead>
-            <tr>
-                <th>Field</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Username</td>
-                <td>{{request.user.username}}</td>
-            </tr>
-            <tr>
-                <td>Name</td>
-                <td>
-                    {{request.user.first_name|title}} {{request.user.last_name|title}}
-                </td>
-            </tr>
+  <h4>Account Details</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Username</td>
+        <td>{{request.user.username}}</td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td>
+          {{request.user.first_name|title}} {{request.user.last_name|title}}
+        </td>
+      </tr>
 
-            {% if request.user.userprofile.has_profile %}
+      {% if request.user.userprofile.has_profile %}
 
-            <tr>
-                <td>Address</td>
-                <td>
-                    <address>
-                        {{request.user.userprofile.address}}<br />
-                        {{request.user.userprofile.town}}<br />
-                        {{request.user.userprofile.county}}<br />
-                        {{request.user.userprofile.post_code}}<br />
-                    </address>
-                </td>
-            </tr>
+      <tr>
+        <td>Address</td>
+        <td>
+          <address>
+            {{request.user.userprofile.address}}<br />
+            {{request.user.userprofile.town}}<br />
+            {{request.user.userprofile.county}}<br />
+            {{request.user.userprofile.post_code}}<br />
+          </address>
+        </td>
+      </tr>
 
-            {% else %}
-            <tr>
-                <td>User Profile</td>
-                <td><a href="{% url 'users:profile_view' %}">Create user Profile</a></td>
-            </tr>
-            {% endif %}
-        </tbody>
-    </table>
+      {% else %}
+      <tr>
+        <td>User Profile</td>
+        <td>
+          <a href="{% url 'users:profile_view' %}">Create user Profile</a>
+        </td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
 </div>
 
-{% endblock %}
+{% endblock %} 
 
 
-{% block extend_footer %}
+{% block extend_footer %} 
 
 {% endblock %}

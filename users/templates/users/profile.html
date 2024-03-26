@@ -3,6 +3,7 @@ This template extends the 'base/main.html' template and displays the user's prof
 -->
 {% extends 'base/main.html' %}
 {% load static %}
+{% block title %}Profile | {% endblock %}
 
 
 {% block extend_head %}
@@ -77,6 +78,7 @@ This template extends the 'base/main.html' template and displays the user's prof
 
 {% endblock %}
 
+
 {% block extend_footer %}
 
 <script type="text/javascript">
@@ -87,6 +89,5 @@ This template extends the 'base/main.html' template and displays the user's prof
 </script>
 
 <script src="{% static 'js/places.js' %}"></script>
-
 
 {% endblock %}
