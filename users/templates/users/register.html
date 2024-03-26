@@ -5,65 +5,60 @@ The form includes fields for first name, last name, username, password, and pass
 It also includes a checkbox to show/hide the password.
 -->
 
-{% extends 'base/main.html' %}
-{% load static %}
-
+{% extends 'base/main.html' %} 
+{% load static %} 
+{% block title %}Sign-up | {% endblock %}
 
 {% block extend_head %}
 
-<script src='https://www.google.com/recaptcha/api.js?render={{recaptcha_site_key}}'></script>
+<script src="https://www.google.com/recaptcha/api.js?render={{recaptcha_site_key}}"></script>
 
-{% endblock %}
+{% endblock %} 
+
 
 {% block content %}
 
 <h3>User Sign Up</h3>
 
 <div class="container">
+  <form id="signupform" method="POST" action="/register">
+    {% csrf_token %}
 
+    <label for="first_name">First Name</label>
+    {{form.first_name}}
 
-    <form id="signupform" method="POST" action="/register">
-        {% csrf_token %}
+    <label for="last_name">Last Name</label>
+    {{form.last_name}}
 
+    <label for="username">Username</label>
+    {{form.username}}
 
-        <label for="first_name">First Name</label>
-        {{form.first_name}}
+    <label for="password1">Password</label>
+    {{form.password1}}
 
-        <label for="last_name">Last Name</label>
-        {{form.last_name}}
+    <label for="password2">Confirm Password</label>
+    {{form.password2}} {{form.token}}
 
-        <label for="username">Username</label>
-        {{form.username}}
+    <label class="check-container"
+      >Show Passwords
+      <input type="checkbox" onclick="showPword()" />
+      <span class="checkmark"></span>
+    </label>
 
-        <label for="password1">Password</label>
-        {{form.password1}}
+    <button type="submit">Sign up</button>
+  </form>
 
-        <label for="password2">Confirm Password</label>
-        {{form.password2}}
-
-        {{form.token}}
-
-        <label class="check-container">Show Passwords
-            <input type="checkbox" onclick="showPword()">
-            <span class="checkmark"></span>
-        </label>
-
-        <button type="submit">Sign up</button>
-
-    </form>
+  <p>Already have an account? <a href="/login">Log in</a></p>
 </div>
 
+{% endblock %} 
 
-</div>
-
-{% endblock %}
 
 {% block extend_footer %}
 
 <script type="text/javascript">
-    // Create a variable that can be used in main.js
-    var recaptcha_site_key = '{{recaptcha_site_key|safe}}'
+  // Create a variable that can be used in main.js
+  var recaptcha_site_key = "{{recaptcha_site_key|safe}}";
 </script>
-
 
 {% endblock %}

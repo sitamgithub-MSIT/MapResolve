@@ -3,13 +3,13 @@ This template extends the 'base/main.html' template and displays a form for user
 The form includes fields for username and password, and a checkbox to show/hide the password.
 The form is submitted to the '/login' URL using the POST method.
 -->
-{% extends 'base/main.html' %}
-{% load static %}
+{% extends 'base/main.html' %} 
+{% load static %} 
+{% block title %}Sign-in | {% endblock %}
 
+{% block extend_head %} 
 
-{% block extend_head %}
-
-{% endblock %}
+{% endblock %} 
 
 
 {% block content %}
@@ -17,28 +17,29 @@ The form is submitted to the '/login' URL using the POST method.
 <h3>User Sign In</h3>
 
 <div class="container">
+  <form id="signinform" method="POST" action="/login">
+    {% csrf_token %}
+    <label for="username">Username</label>
+    {{form.username}}
 
-    <form id="signinform" method="POST" action="/login">
-        {% csrf_token %}
-        <label for="username">Username</label>
-        {{form.username}}
+    <label for="password">Password</label>
+    {{form.password}}
 
-        <label for="password">Password</label>
-        {{form.password}}
+    <label class="check-container"
+      >Show Passwords
+      <input type="checkbox" onclick="showPword()" />
+      <span class="checkmark"></span>
+    </label>
 
-        <label class="check-container">Show Passwords
-            <input type="checkbox" onclick="showPword()">
-            <span class="checkmark"></span>
-        </label>
+    <button type="submit">Sign in</button>
+  </form>
 
-        <button type="submit">Sign in</button>
-    </form>
-
+  <p>Don't have an account? <a href="/register">Sign up</a></p>
 </div>
 
-{% endblock %}
+{% endblock %} 
 
 
-{% block extend_footer %}
+{% block extend_footer %} 
 
 {% endblock %}
