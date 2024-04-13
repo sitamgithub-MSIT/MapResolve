@@ -9,32 +9,35 @@
  * The styles for the submit button, container, and table include their background color, padding, border, and font family.
  * The styles for the selected table row and payment form are also included.
  */
-body {font-family: 'Courier Prime', monospace;}
-* {box-sizing: border-box;}
+body {
+  font-family: "Courier Prime", monospace;
+}
+* {
+  box-sizing: border-box;
+}
 
 body {
-
   margin: 0;
   font-size: 17px;
   font-weight: 400;
   line-height: 1.8;
   background-color: #92b1bbc6;
-  
 }
 
-body, html, .map-container {
+body,
+html,
+.map-container {
   height: 100%;
 }
 
 #map-route {
   height: 75%;
-  }
+}
 
 .logo {
   width: 105px;
   padding: 8px;
 }
-
 
 ul.sidenav {
   list-style-type: none;
@@ -52,11 +55,11 @@ ul.sidenav li a {
   color: #000;
   padding: 8px 16px;
   text-decoration: none;
-  transition: background-color 0.3s
+  transition: background-color 0.3s;
 }
 
 ul.sidenav li a.active {
-  background-color: #011e2d; 
+  background-color: #011e2d;
   color: white;
 }
 
@@ -66,7 +69,6 @@ ul.sidenav li a:hover:not(.active) {
 }
 
 .div-container {
-
   margin-left: 25%;
   padding: 1px 16px;
   height: 1000px;
@@ -78,13 +80,15 @@ ul.sidenav li a:hover:not(.active) {
     height: auto;
     position: relative;
   }
-  
+
   ul.sidenav li a {
     float: left;
     padding: 15px;
   }
-  
-  .div-container {margin-left: 0;}
+
+  .div-container {
+    margin-left: 0;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -94,7 +98,11 @@ ul.sidenav li a:hover:not(.active) {
   }
 }
 
-input[type=text], input[type=email], input[type=password], select, textarea {
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -105,20 +113,21 @@ input[type=text], input[type=email], input[type=password], select, textarea {
   resize: vertical;
 }
 
-
-::-webkit-input-placeholder { /* Edge */
+::-webkit-input-placeholder {
+  /* Edge */
   color: #000;
-  font-family: 'Courier Prime', monospace;
+  font-family: "Courier Prime", monospace;
 }
 
-:-ms-input-placeholder { /* Internet Explorer */
+:-ms-input-placeholder {
+  /* Internet Explorer */
   color: #000;
-  font-family: 'Courier Prime', monospace;
+  font-family: "Courier Prime", monospace;
 }
 
 ::placeholder {
   color: #000;
-  font-family: 'Courier Prime', monospace;
+  font-family: "Courier Prime", monospace;
 }
 
 /* select.selection option,
@@ -127,10 +136,10 @@ input[type=text], input[type=email], input[type=password], select, textarea {
   font-family: 'Courier Prime', monospace;
 } */
 
-input, select{
+input,
+select {
   color: #062418;
-  font-family: 'Courier Prime', monospace;
-
+  font-family: "Courier Prime", monospace;
 }
 
 /* The container */
@@ -223,8 +232,8 @@ input, select{
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -235,8 +244,8 @@ input, select{
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -262,7 +271,7 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-button[type=submit] {
+button[type="submit"] {
   background-color: #062a97;
   color: white;
   padding: 12px 20px;
@@ -271,7 +280,7 @@ button[type=submit] {
   cursor: pointer;
 }
 
-button[type=submit]:hover {
+button[type="submit"]:hover {
   background-color: #081d5d;
 }
 
@@ -282,17 +291,20 @@ button[type=submit]:hover {
 }
 
 table {
-  font-family: 'Courier Prime', monospace;
+  font-family: "Courier Prime", monospace;
   border-collapse: collapse;
   width: 100%;
 }
 
-table td, table th {
+table td,
+table th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-table tr:hover {background-color: #ddd;}
+table tr:hover {
+  background-color: #ddd;
+}
 
 table th {
   padding-top: 12px;
@@ -304,7 +316,7 @@ table th {
 
 .selected {
   background-color: #062a97;
-  color: #FFF;
+  color: #fff;
 }
 
 #payment-form {
@@ -312,7 +324,8 @@ table th {
 }
 
 /* style inputs and link buttons */
-input, select,
+input,
+select,
 .btn {
   width: 100%;
   padding: 12px;
