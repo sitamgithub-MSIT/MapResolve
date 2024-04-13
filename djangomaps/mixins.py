@@ -13,25 +13,9 @@ The module contains the following:
 from django.http import JsonResponse
 from django.conf import settings
 from django.shortcuts import redirect
-from django.utils.timesince import timesince
 
 # Other imports
-import json
 import requests
-import datetime
-from urllib.parse import urlencode
-from humanfriendly import format_timespan
-
-# Importing from Django modules
-from django.http import JsonResponse
-from django.conf import settings
-from django.shortcuts import redirect
-from django.utils.timesince import timesince
-
-# Other imports
-import json
-import requests
-import datetime
 from urllib.parse import urlencode
 from humanfriendly import format_timespan
 
@@ -236,6 +220,6 @@ def Directions(*args, **kwargs):
             "origin": origin,
             "destination": destination,
             "distance": f"{round(distance/1000, 2)} Km",
-            "duration": timesince(duration),
+            "duration": format_timespan(duration),
             "route": routes_list,
         }
