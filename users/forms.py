@@ -6,6 +6,7 @@ The module contains the following classes:
     - AuthForm: A form for authenticating users.
     - UserProfileForm: A form for creating or updating a user's profile information.
 """
+
 # Django imports
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm

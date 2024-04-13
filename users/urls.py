@@ -8,8 +8,10 @@ It sets the app_name variable to "users" and the urlpatterns variable to a list 
 from django.urls import path
 from . import views
 
+# Set the app_name as "users"
 app_name = "users"
 
+# Set the urlpatterns variable to a list of paths
 urlpatterns = [
     path("", views.AccountView.as_view(), name="account"),
     path("profile", views.profile_view, name="profile_view"),

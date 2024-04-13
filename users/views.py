@@ -6,6 +6,7 @@ It includes the following classes and functions:
 - LoginView: A view for user login.
 - RegisterView: A view for user registration.
 """
+
 # Django imports
 from django.shortcuts import redirect, render, reverse
 from django.views.generic.edit import FormView
