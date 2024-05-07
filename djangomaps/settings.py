@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "main.apps.MainConfig",
     "users.apps.UsersConfig",
     "base.apps.BaseConfig",
+    "admin_honeypot",
 ]
 
 MIDDLEWARE = [

@@ -22,9 +22,10 @@ from django.conf.urls.static import static
 
 # Set the urlpatterns variable to a list of paths
 urlpatterns = [
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('mapresolve_admin_secret/', admin.site.urls),
     path("", include("main.urls", namespace="main")),
     path("", include("users.urls", namespace="users")),
-    path("admin/", admin.site.urls),
 ]
 
 if settings.DEBUG:

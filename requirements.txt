@@ -9,7 +9,8 @@ python-dotenv==1.0.1
 requests==2.31.0
 humanfriendly==10.0
 idna==3.7
-pyreadline==2.1
 pytz==2024.1
+tzdata==2024.1
 sqlparse==0.5.0
 urllib3==2.2.1
+django-admin-honeypot-updated-2021==1.2.0
