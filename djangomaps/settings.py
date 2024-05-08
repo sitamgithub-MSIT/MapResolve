@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "admin_honeypot",
     "silk",
     "request",
+    "login_history",
 ]
 
 MIDDLEWARE = [

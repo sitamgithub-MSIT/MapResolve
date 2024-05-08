@@ -17,3 +17,4 @@ django-admin-honeypot-updated-2021==1.2.0
 django-auto-logout==0.5.1
 django-silk==5.1.0
 django-request==1.6.3
+dj_user_login_history==1.0.5
