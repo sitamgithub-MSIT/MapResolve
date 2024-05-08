@@ -20,6 +20,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from schema_graph.views import Schema
+
 # Set the urlpatterns variable to a list of paths
 urlpatterns = [
     path("admin/", include("admin_honeypot.urls", namespace="admin_honeypot")),
@@ -27,6 +29,7 @@ urlpatterns = [
     path("", include("main.urls", namespace="main")),
     path("", include("users.urls", namespace="users")),
     path("silk/", include("silk.urls", namespace="silk")),
+    path("schema/", Schema.as_view()),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

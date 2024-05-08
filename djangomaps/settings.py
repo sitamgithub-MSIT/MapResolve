@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "silk",
     "request",
     "login_history",
+    "schema_graph",
 ]
 
 MIDDLEWARE = [
