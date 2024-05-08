@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "request",
     "login_history",
     "schema_graph",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
