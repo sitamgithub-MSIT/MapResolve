@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "base.apps.BaseConfig",
     "admin_honeypot",
     "silk",
+    "request",
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_auto_logout.middleware.auto_logout",
     "silk.middleware.SilkyMiddleware",
+    "request.middleware.RequestMiddleware",
 ]
 
 ROOT_URLCONF = "djangomaps.urls"
@@ -184,7 +186,7 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_compact_style": False,
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
-    "theme": "cyborg",
+    "theme": "superhero",
     "dark_mode_theme": "cyborg",
     "button_classes": {
         "primary": "btn-primary",
