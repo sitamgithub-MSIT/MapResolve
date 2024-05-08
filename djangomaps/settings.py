@@ -199,7 +199,7 @@ JAZZMIN_UI_TWEAKS = {
 # Login and logout urls
 LOGIN_URL = "users:login"
 LOGIN_REDIRECT_URL = "users:account"
-LOGOUT_REDIRECT_URL = "users:logout"
+LOGOUT_REDIRECT_URL = "users:login"
 
 # Country code for the base country
 BASE_COUNTRY = "IN"
@@ -210,7 +210,7 @@ from datetime import timedelta
 AUTO_LOGOUT = {
     "IDLE_TIME": timedelta(
         minutes=30
-    ),  # User considered idle after 15 minutes of inactivity
+    ),  # User considered idle after 30 minutes of inactivity
     "SESSION_TIME": timedelta(
         hours=2
     ),  # Session expires after 2 hours regardless of activity
