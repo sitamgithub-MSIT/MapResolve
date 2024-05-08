@@ -14,6 +14,12 @@ The form is submitted to the '/login' URL using the POST method.
 
 {% block content %}
 
+{% for message in messages %}
+    <div class="message {{ message.tags }}">
+        {{ message }}
+    </div>
+{% endfor %}
+
 <h3>User Sign In</h3>
 
 <div class="container">

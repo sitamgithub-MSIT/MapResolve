@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "base.apps.BaseConfig",
     "admin_honeypot",
+    "silk",
 ]
 
 MIDDLEWARE = [
@@ -56,6 +57,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_auto_logout.middleware.auto_logout",
+    "silk.middleware.SilkyMiddleware",
 ]
 
 ROOT_URLCONF = "djangomaps.urls"
@@ -71,6 +74,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django_auto_logout.context_processors.auto_logout_client",
             ],
         },
     },
@@ -138,6 +142,7 @@ RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# Jazzmin settings admin panel
 JAZZMIN_SETTINGS = {
     "site_header": "MapResolve",
     "site_brand": "MapResolve Admin",
@@ -191,8 +196,34 @@ JAZZMIN_UI_TWEAKS = {
     },
 }
 
+# Login and logout urls
 LOGIN_URL = "users:login"
 LOGIN_REDIRECT_URL = "users:account"
 LOGOUT_REDIRECT_URL = "users:logout"
 
+# Country code for the base country
 BASE_COUNTRY = "IN"
+
+# Auto logout settings
+from datetime import timedelta
+
+AUTO_LOGOUT = {
+    "IDLE_TIME": timedelta(
+        minutes=30
+    ),  # User considered idle after 15 minutes of inactivity
+    "SESSION_TIME": timedelta(
+        hours=2
+    ),  # Session expires after 2 hours regardless of activity
+    "MESSAGE": "The session has expired! Please login again to continue.",
+    "REDIRECT_TO_LOGIN_IMMEDIATELY": True,
+}
+
+# Silk settings
+SILKY_META = True
+SILKY_INTERCEPT_PERCENT = 50
+SILKY_MAX_REQUEST_BODY_SIZE = -1
+SILKY_MAX_RESPONSE_BODY_SIZE = 1024
+SILKY_MAX_RECORDED_REQUESTS = 10**4
+SILKY_MAX_RECORDED_REQUESTS_CHECK_PERCENT = 10
+SILKY_AUTHENTICATION = True
+SILKY_AUTHORISATION = True

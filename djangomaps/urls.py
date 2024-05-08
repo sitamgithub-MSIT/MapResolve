@@ -22,11 +22,11 @@ from django.conf.urls.static import static
 
 # Set the urlpatterns variable to a list of paths
 urlpatterns = [
-    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    path('mapresolve_admin_secret/', admin.site.urls),
+    path("admin/", include("admin_honeypot.urls", namespace="admin_honeypot")),
+    path("mapresolve_admin_secret/", admin.site.urls),
     path("", include("main.urls", namespace="main")),
     path("", include("users.urls", namespace="users")),
+    path("silk/", include("silk.urls", namespace="silk")),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
