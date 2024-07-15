@@ -10,6 +10,7 @@ charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
 dj-user-login-history==1.0.5
+Django==4.2.6
 django-admin-honeypot-updated-2021==1.2.0
 django-auto-logout==0.5.1
 django-ckeditor==6.6.1
