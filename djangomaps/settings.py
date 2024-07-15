@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -91,24 +91,24 @@ WSGI_APPLICATION = "djangomaps.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
-
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get("DB_ENGINE"),
-        "NAME": os.environ.get("DB_NAME"),
-        "USER": os.environ.get("DB_USER"),
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": os.environ.get("DB_HOST"),
-        "PORT": os.environ.get("DB_PORT"),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": os.environ.get("DB_ENGINE"),
+#         "NAME": os.environ.get("DB_NAME"),
+#         "USER": os.environ.get("DB_USER"),
+#         "PASSWORD": os.environ.get("DB_PASSWORD"),
+#         "HOST": os.environ.get("DB_HOST"),
+#         "PORT": os.environ.get("DB_PORT"),
+#     }
+# }
 
 
 # Password validation
@@ -147,7 +147,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")
 
 
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
@@ -245,6 +245,7 @@ SILKY_MAX_RECORDED_REQUESTS_CHECK_PERCENT = 10
 SILKY_AUTHENTICATION = True
 SILKY_AUTHORISATION = True
 
+# Security settings
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_SSL_REDIRECT = True
