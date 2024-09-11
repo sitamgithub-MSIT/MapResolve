@@ -2,11 +2,11 @@
 This module contains mixins and functions for Django views.
 
 The module contains the following:
-- FormErrorsMixin: A mixin that returns error messages for a form.
-- recaptchavalidate: A function that validates a reCAPTCHA token using the Google API.
-- urlappend: A function that appends query parameters to a URL and returns a redirect response.
-- AjaxFormMixin: A mixin for handling AJAX form submissions.
-- Directions: A function that takes in latitude and longitude coordinates for two points (origin and destination) and optionally for two waypoints. It then uses the Google Maps API to get the directions between the points and returns the distance, duration and route steps as a dictionary.
+    - FormErrorsMixin: A mixin that returns error messages for a form.
+    - recaptchavalidate: A function that validates a reCAPTCHA token using the Google API.
+    - urlappend: A function that appends query parameters to a URL and returns a redirect response.
+    - AjaxFormMixin: A mixin for handling AJAX form submissions.
+    - Directions: A function that takes in latitude and longitude coordinates for two points (origin and destination) and optionally for two waypoints. It then uses the Google Maps API to get the directions between the points and returns the distance, duration and route steps as a dictionary.
 """
 
 # Importing from Django modules
@@ -64,8 +64,8 @@ def urlappend(**kwargs):
     Appends query parameters to a URL and returns a redirect response.
 
     Args:
-        url (str): The URL to append the query parameters to.
-        params (dict): The query parameters to append to the URL.
+        - url (str): The URL to append the query parameters to.
+        - params (dict): The query parameters to append to the URL.
 
     Returns:
         A redirect response with the query parameters appended to the URL.
@@ -139,14 +139,14 @@ def Directions(*args, **kwargs):
     It then uses the Google Maps API to get the directions between the points and returns the distance, duration and route steps as a dictionary.
 
     Args:
-        lat_a (float): Latitude of the origin point.
-        long_a (float): Longitude of the origin point.
-        lat_b (float): Latitude of the destination point.
-        long_b (float): Longitude of the destination point.
-        lat_c (float, optional): Latitude of the first waypoint. Defaults to None.
-        long_c (float, optional): Longitude of the first waypoint. Defaults to None.
-        lat_d (float, optional): Latitude of the second waypoint. Defaults to None.
-        long_d (float, optional): Longitude of the second waypoint. Defaults to None.
+        - lat_a (float): Latitude of the origin point.
+        - long_a (float): Longitude of the origin point.
+        - lat_b (float): Latitude of the destination point.
+        - long_b (float): Longitude of the destination point.
+        - lat_c (float, optional): Latitude of the first waypoint. Defaults to None.
+        - long_c (float, optional): Longitude of the first waypoint. Defaults to None.
+        - lat_d (float, optional): Latitude of the second waypoint. Defaults to None.
+        - long_d (float, optional): Longitude of the second waypoint. Defaults to None.
 
     Returns:
         dict: A dictionary containing the origin, destination, distance, duration and route steps.
