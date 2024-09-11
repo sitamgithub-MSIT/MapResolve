@@ -12,7 +12,6 @@ from djangomaps.mixins import Directions
 def routing(request):
     """
     Function based view for the routing.
-
     This function renders the 'path.html' template with the context containing the Google API key and base country.
 
     Args:
@@ -34,7 +33,6 @@ def routing(request):
 def maps_view(request):
     """
     Function based view for displaying a map.
-
     Renders the maps view with the given parameters.
 
     Args:
