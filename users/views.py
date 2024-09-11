@@ -1,10 +1,10 @@
 """
 This module contains views for user authentication and registration.
 It includes the following classes and functions:
-- AccountView: A view that displays the account page for a logged-in user.
-- profile_view: A view function for the user profile page.
-- LoginView: A view for user login.
-- RegisterView: A view for user registration.
+    - AccountView: A view that displays the account page for a logged-in user.
+    - profile_view: A view function for the user profile page.
+    - LoginView: A view for user login.
+    - RegisterView: A view for user registration.
 """
 
 # Django imports
@@ -112,12 +112,12 @@ class LoginView(AjaxFormMixin, FormView):
     A view for user login.
 
     Attributes:
-    - template_name (str): The name of the template to be used for rendering the view.
-    - form_class (class): The form class to be used for rendering the view.
-    - success_url (str): The URL to redirect to after a successful login.
+        - template_name (str): The name of the template to be used for rendering the view.
+        - form_class (class): The form class to be used for rendering the view.
+        - success_url (str): The URL to redirect to after a successful login.
 
     Methods:
-    - form_valid(form): Handles the form submission and logs in the user if the form is valid.
+        form_valid(form): Handles the form submission and logs in the user if the form is valid.
     """
 
     template_name = "users/login.html"
@@ -129,10 +129,10 @@ class LoginView(AjaxFormMixin, FormView):
         Handles the form submission and logs in the user if the form is valid.
 
         Args:
-        - form (AuthForm): The form instance containing the submitted data.
+            form (AuthForm): The form instance containing the submitted data.
 
         Returns:
-        - response (JsonResponse): A JSON response containing the result of the login attempt.
+            response (JsonResponse): A JSON response containing the result of the login attempt.
         """
         response = super(AjaxFormMixin, self).form_valid(form)
 
@@ -258,7 +258,6 @@ def logout_view(request):
     Returns:
         HttpResponseRedirect: A redirect to the sign-in page.
     """
-
     # Logging out the user
     logout(request)
 
