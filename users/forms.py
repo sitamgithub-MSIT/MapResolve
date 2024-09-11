@@ -24,12 +24,12 @@ class MyUserCreationForm(UserCreationForm):
     fields plus a reCAPTCHA field.
 
     Attributes:
-        first_name (CharField): A field for the user's first name.
-        last_name (CharField): A field for the user's last name.
-        username (EmailField): A field for the user's email address.
-        password1 (CharField): A field for the user's password.
-        password2 (CharField): A field for confirming the user's password.
-        token (CharField): A hidden field for the reCAPTCHA token.
+        - first_name (CharField): A field for the user's first name.
+        - last_name (CharField): A field for the user's last name.
+        - username (EmailField): A field for the user's email address.
+        - password1 (CharField): A field for the user's password.
+        - password2 (CharField): A field for confirming the user's password.
+        - token (CharField): A hidden field for the reCAPTCHA token.
     """
 
     first_name = forms.CharField(
@@ -71,12 +71,11 @@ class MyUserCreationForm(UserCreationForm):
 class AuthForm(AuthenticationForm):
     """
     A form for authenticating users.
-
     Inherits from Django's built-in AuthenticationForm and adds custom fields for email and password input.
 
     Attributes:
-        username (EmailField): A field for the user's email address.
-        password (CharField): A field for the user's password.
+        - username (EmailField): A field for the user's email address.
+        - password (CharField): A field for the user's password.
     """
 
     # Fields for the User Authentication form
@@ -103,7 +102,6 @@ class UserProfileForm(forms.ModelForm):
     A form for creating or updating a user's profile information.
 
     Includes fields for the user's address, town, county, postcode, country, longitude, and latitude.
-
     Inherits from Django's built-in ModelForm class and uses the UserProfile model.
     """
 

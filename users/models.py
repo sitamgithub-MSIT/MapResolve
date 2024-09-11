@@ -12,23 +12,22 @@ class UserProfile(models.Model):
     Model representing a user profile, with fields for address, location, and other details.
 
     Fields:
-    - timestamp: DateTimeField that automatically records the date and time the object was created.
-    - updated: DateTimeField that automatically records the date and time the object was last updated.
-    - user: OneToOneField that links the profile to a User object.
-    - address: CharField that represents the user's address.
-    - town: CharField that represents the user's town or city.
-    - county: CharField that represents the user's county.
-    - postcode: CharField that represents the user's postal code.
-    - country: CharField that represents the user's country.
-    - longitude: CharField that represents the user's longitude.
-    - latitude: CharField that represents the user's latitude.
-    - captcha_score: FloatField that represents the user's captcha score.
-    - has_profile: BooleanField that indicates whether the user has a profile.
-    - is_active: BooleanField that indicates whether the user is active.
+        - timestamp: DateTimeField that automatically records the date and time the object was created.
+        - updated: DateTimeField that automatically records the date and time the object was last updated.
+        - user: OneToOneField that links the profile to a User object.
+        - address: CharField that represents the user's address.
+        - town: CharField that represents the user's town or city.
+        - county: CharField that represents the user's county.
+        - postcode: CharField that represents the user's postal code.
+        - country: CharField that represents the user's country.
+        - longitude: CharField that represents the user's longitude.
+        - latitude: CharField that represents the user's latitude.
+        - captcha_score: FloatField that represents the user's captcha score.
+        - has_profile: BooleanField that indicates whether the user has a profile.
+        - is_active: BooleanField that indicates whether the user is active.
     """
 
     # Fields for the Profile model
-
     # Auto generated fields
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
